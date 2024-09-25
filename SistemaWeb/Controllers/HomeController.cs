@@ -1,8 +1,8 @@
+using Iglesia_Página_Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using SistemaWeb.Models;
 using System.Diagnostics;
 
-namespace SistemaWeb.Controllers
+namespace Iglesia_Página_Web.Controllers
 {
     public class HomeController : Controller
     {
