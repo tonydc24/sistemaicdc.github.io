@@ -13,7 +13,7 @@
 
     <title>@ViewData["Title"]</title>
 
-    <link href="@Url.Content("~/vendor/bootstrap/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/lib/bootstrap/css/bootstrap.min.css")" rel="stylesheet" />
     <link rel="stylesheet" href="@Url.Content("~/css/fontawesome.css")" />
     <link rel="stylesheet" href="@Url.Content("~/css/templatemo-edu-meeting.css")" />
     <link rel="stylesheet" href="@Url.Content("~/css/owl.css")" />
@@ -47,14 +47,14 @@
                     <nav class="main-nav">
                         <a href="@Url.Content("~/Views/Home/Index")" class="logo">Inicio</a>
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#top" class="active"</a>Inicio</li>
-                                <li><a href="">Sección educativa</a></li>
-                                <li><a href="">Inventario</a></li>
-                                <li><a href="">Pagos</a></li>
-                                <li><a href="">Correos</a></li>
-                                <li><a href="">Solicitudes</a></li>
-                                <li><a href="">Usuarios</a></li>
-                                <li><a href=""><i class="bi bi-person-fill">Usuario</i></a></li>
+                                <li class="scroll-to-section"><a href="#top" class="active">Inicio</a></li>
+                                <li><a href="@Url.Action("Games", "Games")">Sección educativa</a></li>
+                                <li><a href="@Url.Action("Inventario", "Inventario")">Inventario</a></li>
+                                <li><a href="@Url.Action("Pago", "Pago")">Pagos</a></li>
+                                <li><a href="@Url.Action("Correos", "Correos")">Correos</a></li>
+                                <li><a href="@Url.Action("Solicitudes","Solicitudes")">Solicitudes</a></li>
+                                <li><a href="@Url.Action("Usuarios", "Usuarios")">Usuarios</a></li>
+                                <li><a href="#"><i class="bi bi-person-fill">Usuario</i></a></li>
                         </ul>
                         <a class="menu-trigger">
                             <span>Menu</span>
@@ -151,8 +151,8 @@
         </div>
     </section>
 
-    <script src="@Url.Content("~/vendor/jquery/jquery.min.js")"></script>
-    <script src="@Url.Content("~/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/lib/jquery/jquery.min.js")"></script>
+    <script src="@Url.Content("~/lib/bootstrap/js/bootstrap.bundle.min.js")"></script>
     <script src="@Url.Content("~/js/isotope.min.js")"></script>
     <script src="@Url.Content("~/js/owl-carousel.js")"></script>
     <script src="@Url.Content("~/js/lightbox.js")"></script>

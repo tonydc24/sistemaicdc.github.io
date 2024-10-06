@@ -15,13 +15,44 @@ namespace Iglesia_Página_Web.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Title"] = "Iglesia Casa de Dios Coronado";
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Correos()
+        {
+            return View();
+        }
+
+        [HttpGet]
+
+        public IActionResult Games()
+        {
+            return View();
+        }
+
+        [HttpGet]
+
+        public IActionResult Inventario()
+        {
+            return View();
+        }
+
+        public IActionResult Solicitudes()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
         }
+
+        public IActionResult Usuario()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
