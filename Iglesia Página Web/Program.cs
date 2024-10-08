@@ -1,4 +1,4 @@
-using Iglesia_Página_Web.Models;
+using Iglesia_Página_Web.Data;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -32,6 +32,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Usuarios}/{action=Login}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

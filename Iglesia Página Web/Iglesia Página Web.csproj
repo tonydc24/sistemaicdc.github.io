@@ -8,33 +8,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Correos\" />
+    <Folder Include="Views\Games\" />
+    <Folder Include="Views\Inventario\" />
+    <Folder Include="Views\Pago\" />
+    <Folder Include="Views\Solicitudes\" />
     <Folder Include="wwwroot\Imagenes\" />
-    <Folder Include="wwwroot\font\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Imagenes\apply-bg.jpg" />
-    <None Include="wwwroot\Imagenes\close.png" />
-    <None Include="wwwroot\Imagenes\course-01.jpg" />
-    <None Include="wwwroot\Imagenes\course-02.jpg" />
-    <None Include="wwwroot\Imagenes\course-03.jpg" />
-    <None Include="wwwroot\Imagenes\course-04.jpg" />
-    <None Include="wwwroot\Imagenes\course-video.mp4" />
-    <None Include="wwwroot\Imagenes\meeting-02.jpg" />
-    <None Include="wwwroot\Imagenes\meeting-03.jpg" />
-    <None Include="wwwroot\Imagenes\meeting-04.jpg" />
-    <None Include="wwwroot\Imagenes\meetings-bg.jpg" />
-    <None Include="wwwroot\Imagenes\meetings-page-bg.jpg" />
-    <None Include="wwwroot\Imagenes\next.png" />
-    <None Include="wwwroot\Imagenes\play-icon.png" />
-    <None Include="wwwroot\Imagenes\single-meeting.jpg" />
-    <None Include="wwwroot\Imagenes\video-item-bg.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="FluentValidation" Version="11.10.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.8" />
