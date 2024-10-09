@@ -1,5 +1,10 @@
-using Iglesia_Página_Web.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Iglesia_Página_Web.Data;
+
+using Iglesia_Página_Web.Models;
 using System.Diagnostics;
 
 namespace Iglesia_Página_Web.Controllers
