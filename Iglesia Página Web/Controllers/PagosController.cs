@@ -6,6 +6,10 @@ namespace Iglesia_Página_Web.Controllers
 {
     public class PagosController : Controller
     {
+        public IActionResult PagosInicio()
+        {
+            return View();
+        }
         public IActionResult Pago()
         {
             var pagos = new List<Pago>

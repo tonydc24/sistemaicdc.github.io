@@ -43,10 +43,7 @@ namespace Iglesia_Página_Web.Controllers
         {
             return View();
         }
-        public IActionResult Pagos()
-        {
-            return View();
-        }
+       
         public IActionResult Usuario()
         {
             return View();

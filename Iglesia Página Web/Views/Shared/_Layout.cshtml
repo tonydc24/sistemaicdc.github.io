@@ -197,7 +197,7 @@
                             </li>
                             
                             <li class="nav-item px-3 py-1 py-lg-0">
-                                <a class="nav-link p-0" asp-controller="Home" asp-action="Pagos">Pagos</a>
+                                <a class="nav-link p-0" asp-controller="Pagos" asp-action="PagosInicio">Pagos</a>
                             </li>
                             <li class="nav-item px-3 py-1 py-lg-0">
                                 <a class="nav-link p-0" asp-controller="Home" asp-action="Inventario">Inventario</a>
@@ -250,7 +250,7 @@
 
     <section>
         <div class="container">
-          @RenderBody();
+          @RenderBody()
         </div>
     </section>
     <footer id="footer">
@@ -269,6 +269,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script type="text/javascript" src="~/js/script.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
