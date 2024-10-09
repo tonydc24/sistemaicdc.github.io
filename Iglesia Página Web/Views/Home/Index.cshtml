@@ -1,4 +1,13 @@
 ﻿
+@if (User.Identity.IsAuthenticated)
+{
+	<div class="logout-container" style="text-align: right; margin-bottom: 20px;">
+		<form asp-controller="Usuario" asp-action="Logout" method="post" class="form-inline">
+			<button type="submit" class="btn btn-outline-danger">Cerrar sesión</button>
+		</form>
+	</div>
+}
+
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="~/css/cardIndex.css">
 <section class="pt-5 pb-5">
