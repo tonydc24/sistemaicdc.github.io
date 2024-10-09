@@ -7,7 +7,7 @@ namespace Iglesia_Página_Web.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<User> Usuarios { get; set; }
         public DbSet <Noticia> Noticias { get; set; }
     }
 }
