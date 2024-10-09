@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Iglesia_Página_Web.Models
+namespace Iglesia_Página_Web.ViewModels
 {
-    public class User
+    public class RegistroViewModel
     {
         [Key]
         [Required(ErrorMessage = "El nombre de usuario es obligatorio.")]
@@ -16,10 +16,6 @@ namespace Iglesia_Página_Web.Models
         [EmailAddress(ErrorMessage = "El correo electrónico no es válido.")]
         public string CorreoElectrónico { get; set; }
 
-        public int RolID { get; set; }
-
-		
-		public virtual Rol Rols { get; set; }
-	}
-
+        public int RolID  { get; set; }
+    }
 }

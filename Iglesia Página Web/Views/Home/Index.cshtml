@@ -1,70 +1,64 @@
 ﻿@model List<Iglesia_Página_Web.Models.Noticia>
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="~/css/cardIndex.css">
-<section class="pt-5 pb-5">
-	<div class="container">
-		<h2 class="text-center">What other say for us</h2>
-		<hr class="midline">
-		<h5 class="text-center mb-5">Our team created best opportunities for your business.</h5>
-		<div class="card col-md-12 mt-2">
-			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-				<ol class="carousel-indicators">
-					<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-					<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-					<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-				</ol>
-				<div class="carousel-inner">
-					@foreach ( var noticia in Model)
-					{
-						<div class="carousel-item active">
-							<div class="bg"></div>
-							<div class="row">
-								<div class="col-md-6 col-12">
-									<div class="carousel-caption">
-										<div class="row">
-											<div class="col-sm-9 col-8">
-												<h2> <span>Ceo Mobile company</span></h2>
-												<small>Well incremented. Comes with recommended workout. I'm using it to help with bladder leakage issues that I've been experiencing since a recent vasectomy.</small>
-												<small class="smallest mute">- willi</small>
+@if (Model == null)
+{
+	<section class="pt-5 pb-5">
+		<div class="container">
+			<h2 class="text-center">Sin eventos</h2>
+			<hr class="midline">
+			<h5 class="text-center mb-5">Our team created best opportunities for your business.</h5>
+		</div>
+	</section>
+}
+else
+{
+	<section class="pt-5 pb-5">
+		<div class="container">
+			<h2 class="text-center">What other say for us</h2>
+			<hr class="midline">
+			<h5 class="text-center mb-5">Our team created best opportunities for your business.</h5>
+			<div class="card col-md-12 mt-2">
+				<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+						<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+						<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+					</ol>
+					<div class="carousel-inner">
+						@foreach (var noticia in Model)
+						{
+							<div class="carousel-item ">
+								<div class="bg"></div>
+								<div class="row">
+									<div class="col-md-6 col-12">
+										<div class="carousel-caption">
+											<div class="row">
+												<div class="col-sm-9 col-8">
+													<h2>@noticia.Titulo <span>@noticia.FechaPublicacion</span></h2>
+													<small>@noticia.Contenido</small>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					}
-					<div class="carousel-item">
-						<div class="bg"></div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="carousel-caption">
-									<div class="row">
-										<div class="col-sm-9 col-8">
-											<h2>Micheal Smith - <span>Web Developer</span></h2>
-											<small>Well incremented. Comes with recommended workout. I'm using it to help with bladder leakage issues that I've been experiencing since a recent vasectomy.</small>
-											<small class="smallest mute">- willi</small>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						}
 					</div>
-					<div class="carousel-item">
-						<img class="d-block w-100" src="..." alt="Third slide">
-					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
 				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+}
+
 
 <section id="quote" class="padding-small">
     <div class="container text-center">
