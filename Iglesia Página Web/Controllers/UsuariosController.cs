@@ -19,14 +19,17 @@ namespace Iglesia_Página_Web.Controllers
 		{
 			_context = context;
 		}
-		//[HttpGet]
-		//public IActionResult Usuario()
-		//{
-		//	var usuarios = _context.Usuario.ToList();
-		//	return View(usuarios);
-		//}
-	
+        //[HttpGet]
+        //public IActionResult Usuario()
+        //{
+        //	var usuarios = _context.Usuario.ToList();
+        //	return View(usuarios);
+        //}
 
+        public async Task<IActionResult> UsuariosInicio()
+        {
+            return View(await _context.Users.ToListAsync());
+        }
         public IActionResult Register()
 		{
 			return View();
@@ -92,18 +95,31 @@ namespace Iglesia_Página_Web.Controllers
             }
 
             var claims = new List<Claim>
-             {
+            {
+                new Claim("UserID", user.UsuarioID.ToString()),
                 new Claim(ClaimTypes.Name, user.NombreUsuario),
                 new Claim(ClaimTypes.Role, user.Rols.NombreRol)
-             };
+            };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = true,
+                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(80)
+            };
 
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                authProperties);
+
 
             return RedirectToAction("Index", "Home");
         }
-
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
+        }
         //[HttpPost]
         //public IActionResult Editar(int id, User usuarioActualizado)
         //{

@@ -8,16 +8,9 @@ namespace Iglesia_Página_Web.Controllers
     public class CorreosController : Controller
     {
         [HttpGet]
-        public IActionResult Correos()
+        public IActionResult CorreosInicio()
         { 
            return View();
         }
-
-        [HttpPost]
-        public IActionResult SendEmail(string subject, string content)
-        {
-            return RedirectToAction("Correos");
-        }
-
     }
 }

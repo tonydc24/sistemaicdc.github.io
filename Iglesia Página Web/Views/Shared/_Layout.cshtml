@@ -1,4 +1,4 @@
-﻿@model User
+﻿
 <!DOCTYPE html>
 <html>
 
@@ -195,25 +195,37 @@
                             <li class="nav-item px-3 py-1 py-lg-0">
                                 <a class="nav-link active p-0" aria-current="page" asp-controller="Home" asp-action="Index">Inicio</a>
                             </li>
-                            
-                            <li class="nav-item px-3 py-1 py-lg-0">
-                                <a class="nav-link p-0" asp-controller="Pagos" asp-action="PagosInicio">Pagos</a>
-                            </li>
-                            <li class="nav-item px-3 py-1 py-lg-0">
-                                <a class="nav-link p-0" asp-controller="Home" asp-action="Inventario">Inventario</a>
-                            </li>
-                            <li class="nav-item px-3 py-1 py-lg-0">
-                                <a class="nav-link p-0" asp-controller="Home" asp-action="Correos">Correos</a>
-                            </li>
-                            <li class="nav-item px-3 py-1 py-lg-0">
-                                <a class="nav-link p-0" asp-controller="Home" asp-action="Solicitudes">Solicitudes</a>
-                            </li>
-                            <li class="nav-item px-3 py-1 py-lg-0">
-                                <a class="nav-link p-0" asp-controller="Home" asp-action="Games">Games</a>
-                            </li>
-                            <li class="nav-item px-3 py-1 py-lg-0">
-                                <a class="nav-link p-0" asp-controller="Home" asp-action="Usuario">Usuarios</a>
-                            </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li class="nav-item px-3 py-1 py-lg-0">
+                                        <a class="nav-link p-0" asp-controller="Pagos" asp-action="PagosInicio">Pagos</a>
+                                    </li>
+                                    <li class="nav-item px-3 py-1 py-lg-0">
+                                        <a class="nav-link p-0" asp-controller="Inventario" asp-action="InventarioInicio">Inventario</a>
+                                    </li>
+                                    <li class="nav-item px-3 py-1 py-lg-0">
+                                        <a class="nav-link p-0" asp-controller="Correos" asp-action="CorreosInicio">Correos</a>
+                                    </li>
+                                    <li class="nav-item px-3 py-1 py-lg-0">
+                                        <a class="nav-link p-0" asp-controller="Solicitudes" asp-action="SolicitudesInicio">Solicitudes</a>
+                                    </li>
+                                    <li class="nav-item px-3 py-1 py-lg-0">
+                                        <a class="nav-link p-0" asp-controller="Usuarios" asp-action="UsuariosInicio">Usuarios</a>
+                                    </li>
+                                }
+                                if (User.IsInRole("Profesor") || User.IsInRole("Estudiante") || User.IsInRole("Admin"))
+                                {
+                                    <li class="nav-item px-3 py-1 py-lg-0">
+                                        <a class="nav-link p-0" asp-controller="Games" asp-action="GamesInicio">Games</a>
+                                    </li>
+                                }
+                            }
+                         
+                          
+                          
+                           
                             <li class="nav-item px-3 py-1 py-lg-0 dropdown">
                                 <a class="nav-link p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                                    aria-expanded="false">
@@ -230,7 +242,7 @@
                                             <a href="index.html" class="dropdown-item">Perfil </a>
                                         </li>
                                         <li>
-                                            <a href="index.html" class="dropdown-item">Cerrar sesión </a>
+                                            <a asp-controller="Usuarios" asp-action="Logout" class="dropdown-item">Cerrar sesión </a>
                                         </li>
                                     }
                                     else

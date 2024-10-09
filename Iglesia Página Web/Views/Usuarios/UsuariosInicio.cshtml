@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<Iglesia_Página_Web.Models.User>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th>Usuario ID</th>
+            <th>Nombre de Usuario</th>
+            <th>Correo Electrónico</th>
+            <th>Rol ID</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.UsuarioID</td>
+                <td>@usuario.NombreUsuario</td>
+                <td>@usuario.CorreoElectrónico</td>
+                <td>@usuario.RolID</td>
+                <td>
+                    <a asp-action="UsuarioEditar" asp-controller="Usuarios" asp-route-id="@usuario.UsuarioID" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="Delete" asp-controller="Usuarios" asp-route-id="@usuario.UsuarioID" class="btn btn-danger btn-sm">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="@Url.Action("UsuarioCrear", "Usuarios")" class="btn btn-success">Crear usuario nuevo</a>
+

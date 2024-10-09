@@ -5,6 +5,8 @@ namespace Iglesia_Página_Web.Models
     public class User
     {
         [Key]
+        public int UsuarioID { get; set; }
+
         [Required(ErrorMessage = "El nombre de usuario es obligatorio.")]
         public string NombreUsuario { get; set; }
 

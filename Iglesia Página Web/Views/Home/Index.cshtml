@@ -1,60 +1,74 @@
 ﻿@model List<Iglesia_Página_Web.Models.Noticia>
-<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="~/css/cardIndex.css">
-@if (Model == null)
+@if (Model != null)
+{
+	<section class="pt-5 pb-5">
+		<div class="container">
+			<h2 class="text-center">Iglesia CDC</h2>
+			<hr class="midline">
+			<h5 class="text-center mb-5">Iglesia Casa de Dios Coronado</h5>
+			<div class="card col-md-12 mt-2">
+				<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+                        @{
+                            var isFirstItem = true;
+                        }
+
+                        @foreach (var noticia in Model)
+                        {
+                            <div class="carousel-item @(isFirstItem ? "active" : "")">
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <div class="carousel-caption">
+                                            <div class="row">
+                                                <div class="col-sm-9 col-8">
+                                                    <h2>@noticia.Titulo <span>@noticia.FechaPublicacion.ToString("yyyy-MM-dd")</span></h2>
+                                                    <small>@noticia.Contenido</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            isFirstItem = false; 
+                        }
+
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"><i class="bi bi-chevron-compact-left"></i></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"><i class="bi bi-chevron-compact-right"></i></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+    @if (User.IsInRole ("Admin"))
+    {
+        <div class="container text-center">
+            <div class="col-12">
+                <a asp-controller="Noticias" asp-action="NoticiaCrear" class="btn btn-primary btn-slide hover-slide-right mt-4">
+                    <span>Añadir evento</span>
+                </a>
+            </div>
+            <div class="col-12">
+                <a asp-controller="Noticias" asp-action="NoticiaList" class="btn btn-primary btn-slide hover-slide-right mt-4">
+                    <span>Editar eventos</span>
+                </a>
+            </div>
+        </div>
+    }
+}
+else
 {
 	<section class="pt-5 pb-5">
 		<div class="container">
 			<h2 class="text-center">Sin eventos</h2>
 			<hr class="midline">
 			<h5 class="text-center mb-5">Our team created best opportunities for your business.</h5>
-		</div>
-	</section>
-}
-else
-{
-	<section class="pt-5 pb-5">
-		<div class="container">
-			<h2 class="text-center">What other say for us</h2>
-			<hr class="midline">
-			<h5 class="text-center mb-5">Our team created best opportunities for your business.</h5>
-			<div class="card col-md-12 mt-2">
-				<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-						<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-						<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-					</ol>
-					<div class="carousel-inner">
-						@foreach (var noticia in Model)
-						{
-							<div class="carousel-item ">
-								<div class="bg"></div>
-								<div class="row">
-									<div class="col-md-6 col-12">
-										<div class="carousel-caption">
-											<div class="row">
-												<div class="col-sm-9 col-8">
-													<h2>@noticia.Titulo <span>@noticia.FechaPublicacion</span></h2>
-													<small>@noticia.Contenido</small>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						}
-					</div>
-					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
-					</button>
-					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
-					</button>
-				</div>
-			</div>
 		</div>
 	</section>
 }

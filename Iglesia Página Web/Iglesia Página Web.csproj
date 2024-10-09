@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Correos\" />
-    <Folder Include="Views\Games\" />
-    <Folder Include="Views\Inventario\" />
-    <Folder Include="Views\Solicitudes\" />
     <Folder Include="wwwroot\Imagenes\" />
   </ItemGroup>
 

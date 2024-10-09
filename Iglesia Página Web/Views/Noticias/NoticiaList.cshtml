@@ -1,0 +1,31 @@
+﻿@model List<Iglesia_Página_Web.Models.Noticia>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th>Noticia ID</th>
+            <th>Título</th>
+            <th>Contenido</th>
+            <th>Fecha de Publicación</th>
+            <th>Administrador ID</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var noticia in Model)
+        {
+            <tr>
+                <td>@noticia.NoticiaID</td>
+                <td>@noticia.Titulo</td>
+                <td>@noticia.Contenido</td>
+                <td>@noticia.FechaPublicacion.ToString("yyyy-MM-dd")</td>
+                <td>@noticia.AdministradorID</td>
+                <td>
+                    <a asp-action="NoticiaEditar" asp-controller="Noticias" asp-route-id="@noticia.NoticiaID)" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="Delete" asp-controller="Noticias" asp-route-id="@noticia.NoticiaID" class="btn btn-danger btn-sm">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="@Url.Action("NoticiaCrear", "Noticias")" class="btn btn-success">Crear noticia nueva</a>

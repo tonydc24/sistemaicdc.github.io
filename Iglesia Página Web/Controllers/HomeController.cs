@@ -19,16 +19,12 @@ namespace Iglesia_Página_Web.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
-        {
-            ViewData["Title"] = "Iglesia Casa de Dios Coronado";
-            return View();
-        }
-
-		public async Task<IActionResult> Noticias()
+		public async Task<IActionResult> Index()
 		{
 			return View(await _context.Noticias.ToListAsync());
 		}
+
+
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

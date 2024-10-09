@@ -9,12 +9,12 @@
 
 <form asp-action="Register" method="post">
     <div class="form-group">
-        <label asp-for="NombreUsuario"></label>
+        <label asp-for="NombreUsuario">Nombre de usuario</label>
         <input asp-for="NombreUsuario" class="form-control" />
         <span asp-validation-for="NombreUsuario" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="CorreoElectrónico"></label>
+        <label asp-for="CorreoElectrónico">Correo electrónico</label>
         <input asp-for="CorreoElectrónico" class="form-control" type="email" />
         <span asp-validation-for="CorreoElectrónico" class="text-danger"></span>
     </div>

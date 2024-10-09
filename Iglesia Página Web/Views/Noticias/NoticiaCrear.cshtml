@@ -1,0 +1,50 @@
+﻿@model Iglesia_Página_Web.Models.Noticia
+
+
+<body>
+    <div class="container">
+        <h1>Create Noticia</h1>
+        <div>
+            <form asp-action="Create">
+                <div class="form-group">
+                    <label asp-for="Titulo" class="control-label"></label>
+                    <input asp-for="Titulo" class="form-control" />
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Contenido" class="control-label"></label>
+                    <textarea asp-for="Contenido" class="form-control"></textarea>
+                    <span asp-validation-for="Contenido" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FechaPublicacion" class="control-label"></label>
+                    <input asp-for="FechaPublicacion" class="form-control" type="date" />
+                    <span asp-validation-for="FechaPublicacion" class="text-danger"></span>
+                </div>
+                <!-- Campo oculto para AdministradorID -->
+                @{
+                    var usuarioID = User.Claims.FirstOrDefault(c => c.Type == "UserID")?.Value;
+                    int userID;
+                    if (int.TryParse(usuarioID, out userID))
+                    {
+                        ViewData["UserID"] = userID;
+                    }
+                    else
+                    {
+                        ViewData["UserID"] = "No disponible";
+                    }
+                }
+                <input asp-for="AdministradorID" type="hidden" value="@userID" />
+                <hr />
+                <div class="form-group">
+                    <input type="submit" value="Crear" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+        <div>
+            <a asp-controller="Noticias" asp-action="NoticiaList" class="btn btn-secondary">Volver a la lista</a>
+        </div>
+    </div>
+</body>
+
+

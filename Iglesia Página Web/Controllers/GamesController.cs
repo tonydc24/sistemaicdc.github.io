@@ -6,7 +6,7 @@ namespace Iglesia_Página_Web.Controllers
     public class GamesController : Controller
     {
         [HttpGet]
-        public IActionResult Games()
+        public IActionResult GamesInicio()
         {
             return View();
         }
