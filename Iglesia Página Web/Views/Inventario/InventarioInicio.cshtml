@@ -1,9 +1,48 @@
-﻿@{
+﻿@model List<Iglesia_Página_Web.Models.InventarioItem>
 
-    ViewData["Title"] = "Pagos";
-}
+<table class="table table-bordered table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th>Nombre del Artículo</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NombreArticulo</td>
+                <td>@item.Cantidad</td>
+                <td>
+                    <a asp-action="ItemDetalles" asp-controller="Inventario" asp-route-id="@item.ArticuloID" class="btn btn-primary btn-sm">Detalles</a>
+                    <a asp-action="ItemEditar" asp-controller="Inventario" asp-route-id="@item.ArticuloID" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="#" onclick="confirmDelete('@item.ArticuloID')" class="btn btn-danger btn-sm">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="@Url.Action("ItemCrear", "Inventario")" class="btn btn-success">Crear nuevo artículo</a>
 
 
+<script>
+    function confirmDelete(ArticuloID) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, borrar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '@Url.Action("Delete", "Inventario")' + '/' + ArticuloID;
+            }
+        });
+    }
+</script>
 
 
 

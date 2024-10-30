@@ -1,0 +1,63 @@
+﻿@model Iglesia_Página_Web.ViewModels.UsersViewModel
+
+
+<div>
+    <h3>Conteo de logins de hoy: @Model.LoginsTodayCount</h3>
+</div>
+<br />
+<div>
+    <h3>Lista de Usuarios</h3>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Nombre de Usuario</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Último Login</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.UsuarioID</td>
+                    <td>@user.NombreUsuario</td>
+                    <td>@user.Email</td>
+                    <td>@user.NombreRol</td>
+                    <td>@user.LastLogin?.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="UserCRUD" asp-route-id="@user.UsuarioID" class="btn btn-primary btn-sm">Editar</a>
+
+                        @if (user.LastLogin < DateTime.Now.AddYears(-5))
+                        {
+                            <a href="#" onclick="confirmDelete('@user.UsuarioID')" class="btn btn-danger btn-sm">Borrar</a>
+                        }
+
+                        <script>
+                            function confirmDelete(userId) {
+                                Swal.fire({
+                                    title: '¿Estás seguro?',
+                                    text: "¡No podrás revertir esto!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#d33',
+                                    cancelButtonColor: '#3085d6',
+                                    confirmButtonText: 'Sí, borrar!'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = '@Url.Action("Delete", "UserCRUD")' + '/' + userId;
+                                    }
+                                });
+                            }
+                        </script>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a href="@Url.Action("CreateUser", "UserCRUD")" class="btn btn-success">Crear usuario nuevo</a>
+
+

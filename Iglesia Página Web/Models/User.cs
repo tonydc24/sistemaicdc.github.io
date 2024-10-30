@@ -19,9 +19,11 @@ namespace Iglesia_Página_Web.Models
         public string CorreoElectrónico { get; set; }
 
         public int RolID { get; set; }
+        public bool ClaveTemp { get; set; }
+        public DateTime Vigencia { get; set; }
 
-		
-		public virtual Rol Rols { get; set; }
+
+        public virtual Rol Rols { get; set; }
 	}
 
 }

@@ -15,7 +15,17 @@ namespace Iglesia_Página_Web.ViewModels
         [Required(ErrorMessage = "El correo electrónico es obligatorio.")]
         [EmailAddress(ErrorMessage = "El correo electrónico no es válido.")]
         public string CorreoElectrónico { get; set; }
-
+        public Boolean ClaveTemp {  get; set; }
+        public DateTime Vigencia { get; set; }
         public int RolID  { get; set; }
+
+        public RegistroViewModel()
+        {
+   
+            ClaveTemp = false;
+
+    
+            Vigencia = DateTime.Now;
+        }
     }
 }

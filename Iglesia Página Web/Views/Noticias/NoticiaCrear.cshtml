@@ -3,7 +3,7 @@
 
 <body>
     <div class="container">
-        <h1>Create Noticia</h1>
+        <h1>Agregar noticia</h1>
         <div>
             <form asp-action="Create">
                 <div class="form-group">
@@ -17,8 +17,8 @@
                     <span asp-validation-for="Contenido" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="FechaPublicacion" class="control-label"></label>
-                    <input asp-for="FechaPublicacion" class="form-control" type="date" />
+                    <label asp-for="FechaPublicacion" class="control-label">Fecha de publicacíon</label>
+                    <input asp-for="FechaPublicacion" class="form-control" type="date" value="@ViewBag.Today" readonly />
                     <span asp-validation-for="FechaPublicacion" class="text-danger"></span>
                 </div>
                 <!-- Campo oculto para AdministradorID -->

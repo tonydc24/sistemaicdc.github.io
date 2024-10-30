@@ -21,7 +21,7 @@
                 <td>@noticia.FechaPublicacion.ToString("yyyy-MM-dd")</td>
                 <td>@noticia.AdministradorID</td>
                 <td>
-                    <a asp-action="NoticiaEditar" asp-controller="Noticias" asp-route-id="@noticia.NoticiaID)" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="NoticiaEditar" asp-controller="Noticias" asp-route-id="@noticia.NoticiaID" class="btn btn-primary btn-sm">Editar</a>
                     <a asp-action="Delete" asp-controller="Noticias" asp-route-id="@noticia.NoticiaID" class="btn btn-danger btn-sm">Borrar</a>
                 </td>
             </tr>

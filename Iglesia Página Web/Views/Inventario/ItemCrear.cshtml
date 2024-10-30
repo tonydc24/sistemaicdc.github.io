@@ -1,0 +1,47 @@
+﻿@model Iglesia_Página_Web.Models.InventarioItem
+
+<body>
+    <div class="container">
+        <h1>Agregar artículo al inventario</h1>
+        <div>
+            <form asp-action="ItemCrear">
+                <div class="form-group">
+                    <label asp-for="NombreArticulo" class="control-label">Nombre del artículo</label>
+                    <input asp-for="NombreArticulo" class="form-control" />
+                    <span asp-validation-for="NombreArticulo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Descripcion" class="control-label"></label>
+                    <textarea asp-for="Descripcion" class="form-control"></textarea>
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cantidad" class="control-label"></label>
+                    <input asp-for="Cantidad" class="form-control" type="number" min="0" />
+                    <span asp-validation-for="Cantidad" class="text-danger"></span>
+                </div>
+                <!-- Campo oculto para Administrador ID -->
+                @{
+                    var usuarioID = User.Claims.FirstOrDefault(c => c.Type == "UserID")?.Value;
+                    int userID;
+                    if (int.TryParse(usuarioID, out userID))
+                    {
+                        ViewData["UserID"] = userID;
+                    }
+                    else
+                    {
+                        ViewData["UserID"] = "No disponible";
+                    }
+                }
+                <input asp-for="Responsable" type="hidden" value="@userID" />
+                <hr />
+                <div class="form-group">
+                    <input type="submit" value="Crear" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+        <div>
+            <a asp-controller="Inventario" asp-action="InventarioInicio" class="btn btn-secondary">Volver a la lista</a>
+        </div>
+    </div>
+</body>

@@ -23,6 +23,7 @@ namespace Iglesia_Página_Web.Controllers
         [HttpGet]
         public IActionResult NoticiaCrear()
         {
+            ViewBag.Today = DateTime.Now.ToString("yyyy-MM-dd");
             return View();
         }
         [HttpPost]

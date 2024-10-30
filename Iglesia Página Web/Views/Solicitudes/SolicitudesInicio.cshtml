@@ -1,5 +1,33 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model List<Iglesia_Página_Web.Models.Solicitud>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th>Solicitud ID</th>
+            <th>Usuario ID</th>
+            <th>Detalle de Solicitud</th>
+            <th>Estado</th>
+            <th>Fecha de Solicitud</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var solicitud in Model)
+        {
+            <tr>
+                <td>@solicitud.SolicitudID</td>
+                <td>@solicitud.UsuarioID</td>
+                <td>@solicitud.DetalleSolicitud</td>
+                <td>@solicitud.Estado</td>
+                <td>@solicitud.FechaSolicitud.ToString("yyyy-MM-dd")</td>
+                <td>
+@*                     <a asp-action="SolicitudEditar" asp-controller="Solicitudes" asp-route-id="@solicitud.SolicitudID" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="Delete" asp-controller="Solicitudes" asp-route-id="@solicitud.SolicitudID" class="btn btn-danger btn-sm">Borrar</a> *@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("SolicitudCrear", "Solicitudes")" class="btn btn-success">Crear solicitud nueva</a>
+
