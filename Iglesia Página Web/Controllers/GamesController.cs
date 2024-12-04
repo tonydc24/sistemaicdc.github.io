@@ -10,7 +10,6 @@ namespace Iglesia_Página_Web.Controllers
         {
             return View();
         }
-
         public IActionResult Details(int id)
         {
             return View();

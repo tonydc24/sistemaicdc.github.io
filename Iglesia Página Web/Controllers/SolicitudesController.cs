@@ -44,7 +44,7 @@ public class SolicitudesController : Controller
         _context.SaveChanges();
 
         
-        return RedirectToAction("InventarioInicio" , "Home"); 
+        return RedirectToAction("Index" , "Home"); 
     }
 
     private int? GetCurrentUserId()
