@@ -3,31 +3,42 @@
 @{
     ViewData["Title"] = "Register";
 }
+<div class="container_user">
+    <h5>Registro</h5>
 
-<h2>Register</h2>
+    <form asp-action="Register" method="post">
+        <div class="form-group mt-3 mb-3">
+            <label asp-for="NombreUsuario">Nombre de usuario</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                <input asp-for="NombreUsuario" class="form-control" />
+            </div>
+            <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3 mb-3">
+            <label asp-for="CorreoElectrónico">Correo electrónico</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                <input asp-for="CorreoElectrónico" class="form-control" type="email" />
+            </div>
+            <span asp-validation-for="CorreoElectrónico" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3 mb-3">
+            <label asp-for="Contraseña">Contraseña</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                <input asp-for="Contraseña" type="password" class="form-control" />
+            </div>
+            <span asp-validation-for="Contraseña" class="text-danger"></span>
+        </div>
+        <input asp-for="RolID" class="form-control" type="hidden" value="4" />
+        <div class="text-center mt-4 mb-4">
+            <button type="submit" class="button_user">Registrarme</button>
+        </div>
 
-
-<form asp-action="Register" method="post">
-    <div class="form-group">
-        <label asp-for="NombreUsuario">Nombre de usuario</label>
-        <input asp-for="NombreUsuario" class="form-control" />
-        <span asp-validation-for="NombreUsuario" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="CorreoElectrónico">Correo electrónico</label>
-        <input asp-for="CorreoElectrónico" class="form-control" type="email" />
-        <span asp-validation-for="CorreoElectrónico" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Contraseña"></label>
-        <input asp-for="Contraseña" type="password" class="form-control" />
-        <span asp-validation-for="Contraseña" class="text-danger"></span>
-    </div>
-    <input asp-for="RolID" class="form-control" type="hidden" value="4" />
-    <button type="submit" class="btn btn-primary">Register</button>
-
-    @if (ViewBag.ErrorMessage != null)
-    {
-        <div class="text-danger">@ViewBag.ErrorMessage</div>
-    }
-</form>
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="text-danger">@ViewBag.ErrorMessage</div>
+        }
+    </form>
+</div>

@@ -1,0 +1,49 @@
+﻿
+
+:root {
+    --color: #F2B821;
+    --hover: adjust-hue(#F2B821, 45deg);
+}
+
+.button_user {
+    background: none;
+    border: 2px solid;
+    font: inherit;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 1em 2em;
+    color: var(--color);
+    transition: 0.25s;
+    box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);
+}
+
+    .button_user:hover,
+    .button_user:focus {
+        border-color: var(--hover);
+        background-color : #F2B821;
+        color: white;
+        box-shadow: 0 0 0 0 var(--hover), inset 6em 3.5em 0 0 var(--hover);
+    }
+
+
+
+
+.container_user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    height: 500px;
+    width: 100%;
+    max-width: 350px;
+    margin: 50px auto;
+    padding: 20px;
+    background: linear-gradient(180deg, rgb(242, 184, 33), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid Orgba(242, 184, 33, 0.18);
+    Orgba(0, 0, 0, 0.37);
+    box-shadow: 0 8px 32px 0
+}
+/* Recover password */
