@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 
-var connectionString = builder.Configuration.GetConnectionString("Server=localhost\\SQLEXPRESS;Database=SistemaWeb;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
+var connectionString = builder.Configuration.GetConnectionString("Server=localhost\\SQLEXPRESS01;Database=SistemaWeb;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<ILogsService, LogsService>();

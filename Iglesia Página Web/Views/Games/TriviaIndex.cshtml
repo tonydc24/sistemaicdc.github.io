@@ -1,0 +1,16 @@
+﻿@model Iglesia_Página_Web.Models.PreguntaTrivia
+
+
+<body class="Tbody">
+    <div class="Tcontainer">
+        <h1 class="Th1">@ViewBag.Pregunta.Pregunta</h1>
+        <form method="post" action="/Games/Verificar" class="respuestas">
+            @foreach (var respuesta in ViewBag.Respuestas)
+            {
+                <button type="submit" name="respuestaSeleccionada" value="@respuesta" class="Tbutton opcion">@respuesta</button>
+            }
+        </form>
+    </div>
+</body>
+
+    
