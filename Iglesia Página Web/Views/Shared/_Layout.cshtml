@@ -226,6 +226,12 @@
                                         <a class="nav-link p-0" asp-controller="Games" asp-action="GamesInicio">Games</a>
                                     </li>
                                 }
+                                if (User.IsInRole("Profesor"))
+                                {
+                                    <li class="nav-item px-3 py-1 py-lg-0">
+                                        <a class="nav-link p-0" asp-controller="UserCRUD" asp-action="Dashboard">Estudiantes</a>
+                                    </li>
+                                }
                             }
                          
                           
@@ -243,9 +249,9 @@
                                    
                                     @if (User.Identity.IsAuthenticated)
                                     {
-                                        <li>
+                                     @*    <li>
                                             <a href="index.html" class="dropdown-item">Perfil </a>
-                                        </li>
+                                        </li> *@
                                         <li>
                                             <a asp-controller="Usuarios" asp-action="Logout" class="dropdown-item">Cerrar sesión </a>
                                         </li>

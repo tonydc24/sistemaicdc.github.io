@@ -1,5 +1,7 @@
 ﻿@model List<Iglesia_Página_Web.Models.Noticia>
-
+<div class="text-center mt-2 mb-2">
+    <a href="@Url.Action("NoticiaCrear", "Noticias")" class="btn btn-success">Crear noticia nueva</a>
+</div>
 <table class="table table-bordered table-hover">
     <thead class="thead-light">
         <tr>
@@ -28,4 +30,4 @@
         }
     </tbody>
 </table>
-<a href="@Url.Action("NoticiaCrear", "Noticias")" class="btn btn-success">Crear noticia nueva</a>
+

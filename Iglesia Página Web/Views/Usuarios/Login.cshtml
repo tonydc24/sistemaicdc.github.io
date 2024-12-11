@@ -3,32 +3,35 @@
 }
 <section class="background_user">
     <div class="container_user">
-        <h5>Inicio de sesión</h5>
+        <h5 class="text-with-line">Inicio de sesión</h5>
         <form asp-action="Login" method="post">
             <div class="form-group mt-3 mb-3">
                 <label for="NombreUsuario">Nombre de usuario</label>
                 <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                    <span class="input-group-text" style="background-color:rgb(5, 33, 60)"><i class="bi bi-person" style="color:rgb( 242, 184, 33)"></i></span>
                     <input type="text" name="NombreUsuario" class="form-control" />
                 </div>
             </div>
             <div class="form-group mt-3 mb-3">
                 <label for="Contraseña">Contraseña</label>
                 <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <span class="input-group-text" style="background-color:rgb(5, 33, 60)"><i class="bi bi-lock" style="color:rgb( 242, 184, 33)"></i></span>
                     <input type="password" name="Contraseña" class="form-control" />
                 </div>
             </div>
             <div class="text-center mt-4 mb-4">
                 <button type="submit" class="button_user">Iniciar sesión</button>
             </div>
-            @if (ViewBag.ErrorMessage != null)
-            {
-                <div class="text-danger">@ViewBag.ErrorMessage</div>
-            }
+        
         </form>
         <a asp-action="RecoverPassword" asp-controller="Usuarios">Olvido su Contraseña?</a>
     </div>
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div>
+            <div class="text-danger">@ViewBag.ErrorMessage</div>
+        </div>
+    }
 </section>
 
 

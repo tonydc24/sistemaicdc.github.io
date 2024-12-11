@@ -3,7 +3,7 @@ CREATE DATABASE SistemaWeb;
 GO
 
 -- Usar la base de datos
-USE SistemaWeb;
+USE [bdsistemaweb];
 GO
 
 -- Crear la tabla de Roles
@@ -17,8 +17,8 @@ GO
 CREATE TABLE Users (
     UsuarioID INT IDENTITY(1,1) PRIMARY KEY,
     NombreUsuario NVARCHAR(100) NOT NULL,
-    Contrase�a NVARCHAR(255) NOT NULL,
-    CorreoElectr�nico NVARCHAR(255) NOT NULL UNIQUE,
+    Contraseña NVARCHAR(255) NOT NULL,
+    CorreoElectrónico NVARCHAR(255) NOT NULL UNIQUE,
 	ClaveTemp BIT NOT NULL,
 	Vigencia DATETIME NOT NULL,
     RolID INT FOREIGN KEY REFERENCES Roles(RolID)
@@ -31,6 +31,7 @@ CREATE TABLE Noticias (
     Titulo NVARCHAR(255) NOT NULL,
     Contenido NVARCHAR(MAX) NOT NULL,
     FechaPublicacion DATETIME NOT NULL,
+	FechaEvento DATETIME NOT NULL,
     AdministradorID INT FOREIGN KEY REFERENCES Users(UsuarioID)
 );
 GO
@@ -87,54 +88,16 @@ CREATE TABLE Logs (
 );
 GO
 
--- Crear la tabla de Juegos
-CREATE TABLE Games (
-    JuegoID INT IDENTITY(1,1) PRIMARY KEY,
-	Creador INT FOREIGN KEY REFERENCES Users(UsuarioID),
-    NombreJuego NVARCHAR(255) NOT NULL,
-    Descripci�n NVARCHAR(MAX)
+CREATE TABLE PreguntasTrivia (
+    Id INT IDENTITY(1,1) PRIMARY KEY ,
+    Nivel VARCHAR(20) NOT NULL, -- 'Basico', 'Medio', 'Dificil'
+    Pregunta TEXT NOT NULL,
+    RespuestaCorrecta VARCHAR(255) NOT NULL,
+    RespuestaIncorrecta1 VARCHAR(255) NOT NULL,
+    RespuestaIncorrecta2 VARCHAR(255) NOT NULL,
+    RespuestaIncorrecta3 VARCHAR(255) NOT NULL
 );
-GO
 
--- Crear la tabla de VersionesJuegos
-CREATE TABLE VersionesJuegos (
-    VersionID INT IDENTITY(1,1) PRIMARY KEY,
-    JuegoID INT FOREIGN KEY REFERENCES Games(JuegoID),
-    NumeroVersion NVARCHAR(50) NOT NULL,
-    FechaLanzamiento DATETIME NOT NULL,
-    DescripcionVersion NVARCHAR(MAX),
-    Estado NVARCHAR(50) CHECK (Estado IN ('Activa', 'Inactiva'))
-);
-GO
-
--- Crear la tabla de ConfiguracionesJuegos
-CREATE TABLE ConfiguracionesJuegos (
-    ConfiguracionID INT IDENTITY(1,1) PRIMARY KEY,
-    VersionID INT FOREIGN KEY REFERENCES VersionesJuegos(VersionID),
-    ClaveConfiguracion NVARCHAR(255) NOT NULL,
-    ValorConfiguracion NVARCHAR(MAX) NOT NULL
-);
-GO
-
-
-
--- Eliminar tablas en orden inverso para evitar problemas de dependencia
-
--- Eliminar la tabla de ConfiguracionesJuegos
-DROP TABLE IF EXISTS ConfiguracionesJuegos;
-GO
-
--- Eliminar la tabla de VersionesJuegos
-DROP TABLE IF EXISTS VersionesJuegos;
-GO
-
--- Eliminar la tabla de Juegos
-DROP TABLE IF EXISTS Games;
-GO
-
--- Eliminar la tabla de Actividades
-DROP TABLE IF EXISTS Actividades;
-GO
 
 -- Eliminar la tabla de Logs
 DROP TABLE IF EXISTS Logs;
@@ -175,13 +138,38 @@ INSERT INTO Roles (NombreRol) VALUES
 ('Estudiante'),
 ('Usuario');
 
-INSERT INTO Users (NombreUsuario, Contrase�a, CorreoElectr�nico,ClaveTemp ,Vigencia , RolID) VALUES 
+INSERT INTO Users (NombreUsuario, Contraseña, CorreoElectrónico,ClaveTemp ,Vigencia , RolID) VALUES 
 ('admin_user', '$2a$12$IA9DGlCjQ56jgpTk6FisV.bSY/HyO/KJgXJ8o9cMc0Hhe.9zrpWw.', 'admin@example.com',0, GETDATE(),  1);
 --  Password123#
-INSERT INTO Noticias (Titulo, Contenido, FechaPublicacion, AdministradorID) VALUES 
-('Nuevo Lanzamiento de Producto', 'Estamos emocionados de anunciar el lanzamiento de nuestro nuevo producto que revolucionar� la industria.', '2024-10-01', 1),
-('Actualizaci�n de Seguridad', 'Hemos implementado una nueva actualizaci�n de seguridad que mejora la protecci�n de los datos de nuestros usuarios.', '2024-10-05', 1),
-('Evento Especial', '�nete a nosotros en nuestro evento especial el pr�ximo mes. Habr� sorpresas y mucho m�s.', '2024-10-10', 1),
-('Consejos de Uso', 'Aqu� hay algunos consejos sobre c�mo sacar el m�ximo provecho de nuestros productos y servicios.', '2024-10-15', 1);
+INSERT INTO Noticias (Titulo, Contenido, FechaPublicacion,FechaEvento, AdministradorID) VALUES 
+('Nuevo Lanzamiento de Producto', 'Estamos emocionados de anunciar el lanzamiento de nuestro nuevo producto que revolucionará la industria.', '2024-10-01',GETDATE(), 1),
+('Actualización de Seguridad', 'Hemos implementado una nueva actualización de seguridad que mejora la protección de los datos de nuestros usuarios.', '2024-10-05',GETDATE(), 1),
+('Evento Especial', 'Únete a nosotros en nuestro evento especial el próximo mes. Habrá sorpresas y mucho más.', '2024-10-10',GETDATE(), 1),
+('Consejos de Uso', 'Aquí hay algunos consejos sobre cómo sacar el máximo provecho de nuestros productos y servicios.', '2024-10-15',GETDATE(), 1);
 
 
+INSERT INTO PreguntasTrivia (Nivel, Pregunta, RespuestaCorrecta, RespuestaIncorrecta1, RespuestaIncorrecta2, RespuestaIncorrecta3)
+VALUES
+('Basico', '¿Quién creó el cielo y la tierra?', 'Dios', 'Jesús', 'Noé', 'Moisés'),
+('Basico', '¿Cómo se llamaron los primeros hombres en la Biblia?', 'Adán y Eva', 'Caín y Abel', 'José y María', 'Moisés y Aarón'),
+('Basico', '¿Qué hizo Dios al séptimo día después de crear el mundo?', 'Descansó', 'Trabajó', 'Comió', 'Durmió'),
+('Basico', '¿Quién salvó a los animales en un arca?', 'Noé', 'Moisés', 'Abraham', 'Pedro'),
+('Basico', '¿Cómo se llamaba la mamá de Jesús?', 'María', 'Eva', 'Sara', 'Marta');
+
+
+INSERT INTO PreguntasTrivia (Nivel, Pregunta, RespuestaCorrecta, RespuestaIncorrecta1, RespuestaIncorrecta2, RespuestaIncorrecta3)
+VALUES
+('Medio', '¿Cuántos días y noches llovió durante el diluvio?', '40', '30', '20', '50'),
+('Medio', '¿Cómo se llamaba el padre de Jesús en la tierra?', 'José', 'Abraham', 'Isaac', 'Pedro'),
+('Medio', '¿Qué comida multiplicó Jesús para alimentar a mucha gente?', 'Panes y peces', 'Maná y codornices', 'Panes y vino', 'Frutas y peces'),
+('Medio', '¿Cuántos discípulos tenía Jesús?', '12', '10', '11', '13'),
+('Medio', '¿Cómo llamó Jesús a sus seguidores?', 'Discípulos', 'Apóstoles', 'Feligreses', 'Amigos');
+
+
+INSERT INTO PreguntasTrivia (Nivel, Pregunta, RespuestaCorrecta, RespuestaIncorrecta1, RespuestaIncorrecta2, RespuestaIncorrecta3)
+VALUES
+('Dificil', '¿Cuántos días tardó Dios en crear el mundo?', '6 días y descansó el séptimo', '7 días', '5 días', '10 días'),
+('Dificil', '¿Quién abrió el Mar Rojo para que los israelitas cruzaran?', 'Moisés', 'Abraham', 'Josué', 'David'),
+('Dificil', '¿Qué señal dio Dios después del diluvio?', 'Un arco iris', 'Un trueno', 'Un fuego', 'Una nube'),
+('Dificil', '¿Qué usó David para vencer a Goliat?', 'Una honda y una piedra', 'Una espada', 'Un arco y flecha', 'Sus manos'),
+('Dificil', '¿Dónde nació Jesús?', 'Belén', 'Nazaret', 'Jerusalén', 'Egipto');

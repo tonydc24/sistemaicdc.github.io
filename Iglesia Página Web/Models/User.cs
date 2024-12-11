@@ -10,8 +10,7 @@ namespace Iglesia_Página_Web.Models
         [Required(ErrorMessage = "El nombre de usuario es obligatorio.")]
         public string NombreUsuario { get; set; }
 
-        [Required(ErrorMessage = "La contraseña es obligatoria.")]
-        [StringLength(255, ErrorMessage = "La contraseña debe tener al menos {2} caracteres.", MinimumLength = 6)]
+
         public string Contraseña { get; set; }
 
         [Required(ErrorMessage = "El correo electrónico es obligatorio.")]

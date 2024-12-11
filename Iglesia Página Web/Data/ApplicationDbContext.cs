@@ -18,7 +18,7 @@ public class ApplicationDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
      
-        optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS01;Database=SistemaWeb;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
+        optionsBuilder.UseSqlServer("Server=sistemawebicdc.database.windows.net;Database=bdsistemaweb;User Id=userweb;Password=Password123#;MultipleActiveResultSets=true;TrustServerCertificate=True");
       
     }
 

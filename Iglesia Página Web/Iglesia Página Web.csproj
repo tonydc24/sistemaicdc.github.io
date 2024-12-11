@@ -31,4 +31,11 @@
     <PackageReference Include="xunit" Version="2.9.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\UserCRUD\UserCrear.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

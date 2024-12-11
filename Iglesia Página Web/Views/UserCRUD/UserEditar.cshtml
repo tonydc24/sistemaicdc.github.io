@@ -1,0 +1,47 @@
+﻿@model Iglesia_Página_Web.Models.User
+
+<body>
+    <div class="mt-2 mb-2">
+        <a asp-controller="UserCRUD" asp-action="Dashboard" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+    <div class="container">
+        <h1>Editar Usuario</h1>
+        <div>
+            <form asp-action="UserEditar">
+                <div class="form-group">
+                    <input asp-for="UsuarioID" type="hidden" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="NombreUsuario" class="control-label">Nombre de Usuario</label>
+                    <input asp-for="NombreUsuario" class="form-control" required />
+                    <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CorreoElectrónico" class="control-label">Correo Electrónico</label>
+                    <input asp-for="CorreoElectrónico" class="form-control" type="email" required />
+                    <span asp-validation-for="CorreoElectrónico" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RolID" class="control-label">Rol</label>
+                    <select asp-for="RolID" class="form-control">
+                        <option value="1">Administrador</option>
+                        <option value="2">Profesor</option>
+                        <option value="3">Estudiante</option>
+                        <option value="4">Usuario</option>
+                    </select>
+                    <span asp-validation-for="RolID" class="text-danger"></span>
+                </div>
+                <div class="text-center form-group mt-3 mb-3">
+                    <input type="submit" value="Editar" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="text-center mt-2 mb-2">
+                <div class="text-danger">@ViewBag.ErrorMessage</div>
+            </div>
+        }
+    </div>
+</body>

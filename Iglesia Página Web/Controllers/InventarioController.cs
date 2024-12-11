@@ -87,7 +87,7 @@ namespace Iglesia_Página_Web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VideogameExiste(item.ArticuloID))
+                    if (!ItemExiste(item.ArticuloID))
                     {
                         return NotFound();
                     }
@@ -110,7 +110,7 @@ namespace Iglesia_Página_Web.Controllers
             return RedirectToAction("InventarioInicio");
         }
 
-        private bool VideogameExiste(int id)
+        private bool ItemExiste(int id)
         {
             return _context.Inventario.Any(e => e.ArticuloID == id);
         }

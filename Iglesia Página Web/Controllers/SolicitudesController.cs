@@ -46,7 +46,14 @@ public class SolicitudesController : Controller
         
         return RedirectToAction("Index" , "Home"); 
     }
-
+    // Delete
+    public async Task<IActionResult> Delete(int id)
+    {
+        var item = await _context.Solicitudes.FindAsync(id);
+        _context.Solicitudes.Remove(item);
+        await _context.SaveChangesAsync();
+        return RedirectToAction("SolicitudesInicio");
+    }
     private int? GetCurrentUserId()
     {
 

@@ -25,7 +25,14 @@
         box-shadow: 0 0 0 0 var(--hover), inset 6em 3.5em 0 0 var(--hover);
     }
 
-
+.text-with-line::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px; /* Grosor de la línea */
+    background-color: black; /* Color de la línea */
+    margin-top: 5px; /* Espacio entre el texto y la línea */
+}
 
 
 .container_user {
@@ -46,4 +53,23 @@
     Orgba(0, 0, 0, 0.37);
     box-shadow: 0 8px 32px 0
 }
-/* Recover password */
+/* Recover password 5, 33, 60 */
+
+.container_user_recover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    height: 500px;
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: linear-gradient(0deg, rgb(5, 33, 60), rgb( 242, 184, 33));
+    backdrop-filter: blur(15px);
+
+    border-radius: 20px;
+    border: 1px solid Orgba(242, 184, 33, 0.18);
+    Orgba(0, 0, 0, 0.37);
+    box-shadow: 0 8px 32px 0
+}

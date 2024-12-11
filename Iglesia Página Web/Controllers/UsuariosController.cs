@@ -30,17 +30,20 @@ namespace Iglesia_Página_Web.Controllers
             _env = env;
             _logsService = logs;
         }
-        //[HttpGet]
-        //public IActionResult Usuario()
+  
+        //public async Task<IActionResult> UsuariosInicio()
         //{
-        //	var usuarios = _context.Usuario.ToList();
-        //	return View(usuarios);
-        //}
+        //    var usuarios = await _context.Users.ToListAsync();
+        //    var logs = await _context.Logs.ToListAsync();
 
-        public async Task<IActionResult> UsuariosInicio()
-        {
-            return View(await _context.Users.ToListAsync());
-        }
+        //    var viewModel = new UsuariosLogsViewModel
+        //    {
+        //        Usuarios = usuarios,
+        //        Logs = logs
+        //    };
+
+        //    return View(viewModel);
+        //}
         public IActionResult Register()
 		{
 			return View();
@@ -50,27 +53,60 @@ namespace Iglesia_Página_Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Verificar si ya existe un usuario con el mismo correo electrónico
+                var usuarioExistentePorCorreo = await _context.Users
+                    .FirstOrDefaultAsync(u => u.CorreoElectrónico == model.CorreoElectrónico);
+
+                // Verificar si ya existe un usuario con el mismo nombre de usuario
+                var usuarioExistentePorNombre = await _context.Users
+                    .FirstOrDefaultAsync(u => u.NombreUsuario == model.NombreUsuario);
+
+                if (usuarioExistentePorCorreo != null && usuarioExistentePorNombre != null)
+                {
+                    // Si ambos existen, agregar un mensaje al ViewBag
+                    ViewBag.ErrorMessage = "El nombre de usuario y el correo electrónico ya están registrados.";
+                }
+                else if (usuarioExistentePorCorreo != null)
+                {
+                    // Si solo el correo electrónico existe, agregar un mensaje al ViewBag
+                    ViewBag.ErrorMessage = "Este correo electrónico ya está registrado.";
+                }
+                else if (usuarioExistentePorNombre != null)
+                {
+                    // Si solo el nombre de usuario existe, agregar un mensaje al ViewBag
+                    ViewBag.ErrorMessage = "Este nombre de usuario ya está registrado.";
+                }
+
+                // Si hay errores en el ModelState o en el ViewBag, retornar la vista con los errores
+                if (!ModelState.IsValid || ViewBag.ErrorMessage != null)
+                {
+                    return View(model);
+                }
+
+                // Si no hay errores, crear el nuevo usuario
                 var user = new User
                 {
                     NombreUsuario = model.NombreUsuario,
                     Contraseña = BCrypt.Net.BCrypt.HashPassword(model.Contraseña),
                     CorreoElectrónico = model.CorreoElectrónico,
                     Vigencia = DateTime.Now,
-                    RolID = model.RolID 
-                 
+                    RolID = model.RolID
                 };
 
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Login");
             }
+
+            // Si el ModelState no es válido, retornar la vista con los errores
             foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
             {
-                Debug.WriteLine($"Error: {error.ErrorMessage}"); 
+                Debug.WriteLine($"Error: {error.ErrorMessage}");
             }
             ViewBag.ErrorMessage = "Error al realizar el registro!";
             return View(model);
         }
+
 
         [HttpGet]
         public IActionResult Login()

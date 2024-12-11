@@ -4,13 +4,13 @@
     ViewData["Title"] = "Register";
 }
 <div class="container_user">
-    <h5>Registro</h5>
+    <h5 class="text-with-line">Registro</h5>
 
     <form asp-action="Register" method="post">
         <div class="form-group mt-3 mb-3">
             <label asp-for="NombreUsuario">Nombre de usuario</label>
             <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                <span class="input-group-text" style="background-color:rgb(5, 33, 60)"><i class="bi bi-person" style="color:rgb( 242, 184, 33)"></i></span>
                 <input asp-for="NombreUsuario" class="form-control" />
             </div>
             <span asp-validation-for="NombreUsuario" class="text-danger"></span>
@@ -18,7 +18,7 @@
         <div class="form-group mt-3 mb-3">
             <label asp-for="CorreoElectrónico">Correo electrónico</label>
             <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                <span class="input-group-text" style="background-color:rgb(5, 33, 60)"><i class="bi bi-envelope" style="color:rgb( 242, 184, 33)"></i></span>
                 <input asp-for="CorreoElectrónico" class="form-control" type="email" />
             </div>
             <span asp-validation-for="CorreoElectrónico" class="text-danger"></span>
@@ -26,19 +26,41 @@
         <div class="form-group mt-3 mb-3">
             <label asp-for="Contraseña">Contraseña</label>
             <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                <span class="input-group-text" style="background-color:rgb(5, 33, 60)"><i class="bi bi-lock" style="color:rgb( 242, 184, 33)"></i></span>
                 <input asp-for="Contraseña" type="password" class="form-control" />
             </div>
             <span asp-validation-for="Contraseña" class="text-danger"></span>
         </div>
-        <input asp-for="RolID" class="form-control" type="hidden" value="4" />
+        <div class="form-group">
+            <input asp-for="RolID" type="hidden" id="RolID" value="4" />
+            <label for="RolCheckbox">Soy estudiante</label>
+            <input type="checkbox" id="RolCheckbox" onclick="toggleRolID()" />
+            
+        </div>
+
         <div class="text-center mt-4 mb-4">
             <button type="submit" class="button_user">Registrarme</button>
         </div>
 
-        @if (ViewBag.ErrorMessage != null)
-        {
-            <div class="text-danger">@ViewBag.ErrorMessage</div>
-        }
+    
     </form>
 </div>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="text-center">
+        <div class="text-danger">@ViewBag.ErrorMessage</div>
+    </div>
+    
+}
+<script>
+    function toggleRolID() {
+        var checkbox = document.getElementById("RolCheckbox");
+        var hiddenInput = document.getElementById("RolID");
+
+        if (checkbox.checked) {
+            hiddenInput.value = 3;
+        } else {
+            hiddenInput.value = 4;
+        }
+    }
+</script>

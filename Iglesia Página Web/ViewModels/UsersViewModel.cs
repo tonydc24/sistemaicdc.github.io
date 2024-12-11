@@ -6,6 +6,7 @@ namespace Iglesia_Página_Web.ViewModels
     {
         public int LoginsTodayCount { get; set; }
         public List<UserWithLastLogin> Users { get; set; }
+        public List<Log> Logs { get; set; }
     }
 
     public class UserWithLastLogin
@@ -16,5 +17,6 @@ namespace Iglesia_Página_Web.ViewModels
         public string NombreRol { get; set; }
         public DateTime? LastLogin { get; set; }
     }
+
 
 }
