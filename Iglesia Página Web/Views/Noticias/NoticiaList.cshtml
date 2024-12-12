@@ -9,6 +9,7 @@
             <th>Título</th>
             <th>Contenido</th>
             <th>Fecha de Publicación</th>
+            <th>Fecha de Evento</th>
             <th>Administrador ID</th>
             <th>Acciones</th>
         </tr>
@@ -21,6 +22,7 @@
                 <td>@noticia.Titulo</td>
                 <td>@noticia.Contenido</td>
                 <td>@noticia.FechaPublicacion.ToString("yyyy-MM-dd")</td>
+                <td>@noticia.FechaEvento.ToString("yyyy-MM-dd")</td>
                 <td>@noticia.AdministradorID</td>
                 <td>
                     <a asp-action="NoticiaEditar" asp-controller="Noticias" asp-route-id="@noticia.NoticiaID" class="btn btn-primary btn-sm">Editar</a>

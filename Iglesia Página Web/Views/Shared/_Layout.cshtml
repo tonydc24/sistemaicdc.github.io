@@ -204,15 +204,7 @@
                             {
                                 @if (User.IsInRole("Admin"))
                                 {
-                                    <li class="nav-item px-3 py-1 py-lg-0">
-                                        <a class="nav-link p-0" asp-controller="Pagos" asp-action="PagosInicio">Pagos</a>
-                                    </li>
-                                    <li class="nav-item px-3 py-1 py-lg-0">
-                                        <a class="nav-link p-0" asp-controller="Inventario" asp-action="InventarioInicio">Inventario</a>
-                                    </li>
-                                    <li class="nav-item px-3 py-1 py-lg-0">
-                                        <a class="nav-link p-0" asp-controller="Correos" asp-action="CorreosInicio">Correos</a>
-                                    </li>
+                               
                                     <li class="nav-item px-3 py-1 py-lg-0">
                                         <a class="nav-link p-0" asp-controller="Solicitudes" asp-action="SolicitudesInicio">Solicitudes</a>
                                     </li>
@@ -249,9 +241,7 @@
                                    
                                     @if (User.Identity.IsAuthenticated)
                                     {
-                                     @*    <li>
-                                            <a href="index.html" class="dropdown-item">Perfil </a>
-                                        </li> *@
+                                 
                                         <li>
                                             <a asp-controller="Usuarios" asp-action="Logout" class="dropdown-item">Cerrar sesión </a>
                                         </li>
@@ -294,6 +284,7 @@
     <script type="text/javascript" src="~/js/script.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="~/js/alerts.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

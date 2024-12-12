@@ -3,6 +3,9 @@ using Iglesia_Página_Web.Data;
 using Iglesia_Página_Web.Models;
 using System.Linq;
 using Iglesia_Página_Web.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace Iglesia_Página_Web.Controllers
 {
@@ -122,5 +125,104 @@ namespace Iglesia_Página_Web.Controllers
                 _ => "Basico"
             };
         }
+        public IActionResult Preguntas(string nivel)
+        {
+            ViewData["Nivel"] = nivel ?? "Basico"; // Si no se selecciona nivel, usar "Basico" como predeterminado
+
+            List<PreguntaTrivia> preguntas;
+
+            if (string.IsNullOrEmpty(nivel) || nivel == "Basico" || nivel == "Medio" || nivel == "Dificil")
+            {
+                preguntas = _context.PreguntasTrivia.Where(p => p.Nivel == nivel).ToList();
+            }
+            else
+            {
+                preguntas = _context.PreguntasTrivia.ToList(); // Muestra todas las preguntas si no hay filtro
+            }
+
+            return View(preguntas);
+        }
+        [HttpGet]
+        public IActionResult CrearPreguntas()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CrearPreguntas(PreguntaTrivia pregunta)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(pregunta);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Preguntas));
+                }
+                catch (DbUpdateException)
+                {
+                    ModelState.AddModelError("", "No se pudo guardar la pregunta. Por favor, inténtelo de nuevo.");
+                }
+            }
+            return View(pregunta);
+        }
+
+        [HttpGet]
+        public IActionResult EditarPreguntas(int id)
+        {
+            var pregunta = _context.PreguntasTrivia.Find(id);
+            if (pregunta == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(pregunta);
+        }
+
+
+        // Acción para guardar los cambios de la pregunta editada
+        [HttpPost]
+
+        public async Task<IActionResult> EditarPreguntas(PreguntaTrivia item)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(item);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ItemExiste(item.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction("Preguntas");
+            }
+            return View(item);
+        }
+
+    
+        public async Task<IActionResult> EliminarPregunta(int id)
+        {
+            var item = await _context.PreguntasTrivia.FindAsync(id);
+            _context.PreguntasTrivia.Remove(item);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Preguntas");
+        }
+
+        private bool ItemExiste(int id)
+        {
+            return _context.PreguntasTrivia.Any(e => e.Id == id);
+        }
+
+
+
     }
 }

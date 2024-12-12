@@ -1,0 +1,64 @@
+﻿@model List<Iglesia_Página_Web.Models.PreguntaTrivia>
+
+@{
+    ViewData["Title"] = "Preguntas de Trivia";
+    string nivelSeleccionado = ViewData["Nivel"] as string ?? "Basico"; // Usar Basico por defecto
+}
+
+<div class="container mt-3">
+    <h2>Preguntas de Trivia</h2>
+    <div class="text-center mt-3 mb-3">
+        <a href="@Url.Action("CrearPreguntas", "Games")" class="btn btn-success">Agregar pregunta nueva</a>
+    </div>
+    <div class="text-center btn-container mb-3">
+        <!-- Botones para Filtrar por Nivel -->
+        <a href="@Url.Action("Preguntas", new { nivel = "Basico" })" class="btn btn-primary @(nivelSeleccionado == "Basico" ? "active" : "")">Básico</a>
+        <a href="@Url.Action("Preguntas", new { nivel = "Medio" })" class="btn btn-primary @(nivelSeleccionado == "Medio" ? "active" : "")">Medio</a>
+        <a href="@Url.Action("Preguntas", new { nivel = "Dificil" })" class="btn btn-primary @(nivelSeleccionado == "Dificil" ? "active" : "")">Difícil</a>
+    </div>
+
+    <ul class="list-group">
+        @foreach (var pregunta in Model)
+        {
+            <li class="list-group-item">
+                <div class="dropdown">
+                    <!-- Botón del dropdown -->
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton-@pregunta.Pregunta.GetHashCode()" data-bs-toggle="dropdown" aria-expanded="false">
+                        @pregunta.Pregunta
+                    </button>
+
+                    <!-- Menú del dropdown -->
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-@pregunta.Pregunta.GetHashCode()">
+                        <li><a class="dropdown-item" href="#">@pregunta.RespuestaCorrecta<i class="bi bi-check"></i></a></li>
+                        <li><a class="dropdown-item" href="#">@pregunta.RespuestaIncorrecta1<i class="bi bi-x"></i></a></li>
+                        <li><a class="dropdown-item" href="#">@pregunta.RespuestaIncorrecta2<i class="bi bi-x"></i></a></li>
+                        <li><a class="dropdown-item" href="#">@pregunta.RespuestaIncorrecta3<i class="bi bi-x"></i></a></li>
+                        <!-- Redirigir a la acción para editar -->
+                        <li><a class="dropdown-item" href="@Url.Action("EditarPreguntas", new { id = pregunta.Id })">Editar</a></li>
+                        <!-- Botón para eliminar pregunta -->
+                        <li>
+                            <button type="button" class="dropdown-item text-danger" onclick="confirmDelete(@pregunta.Id)">Eliminar</button>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+<script>
+    function confirmDelete(preguntaId) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, borrar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '@Url.Action("EliminarPregunta", "Games")' + '/' + preguntaId;
+            }
+        });
+    }
+</script>

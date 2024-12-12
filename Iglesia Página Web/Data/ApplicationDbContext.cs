@@ -22,10 +22,6 @@ public class ApplicationDbContext : DbContext
       
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<PreguntaTrivia>().HasNoKey(); 
-        base.OnModelCreating(modelBuilder);
-    }
+  
 
 }

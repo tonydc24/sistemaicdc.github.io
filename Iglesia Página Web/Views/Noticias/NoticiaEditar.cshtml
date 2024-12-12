@@ -30,11 +30,11 @@
                         <textarea asp-for="Contenido" class="form-control"></textarea>
                         <span asp-validation-for="Contenido" class="text-danger"></span>
                     </div>
-
+                    <input asp-for="FechaPublicacion" class="form-control" type="hidden"/>
                     <div class="form-group">
-                        <label asp-for="FechaPublicacion" class="control-label"></label>
-                        <input asp-for="FechaPublicacion" class="form-control"/>
-                        <span asp-validation-for="FechaPublicacion" class="text-danger"></span>
+                        <label asp-for="FechaEvento" class="control-label"></label>
+                        <input asp-for="FechaEvento" class="form-control"/>
+                        <span asp-validation-for="FechaEvento" class="text-danger"></span>
                     </div>
 
                     @{
