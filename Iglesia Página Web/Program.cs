@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 
-var connectionString = builder.Configuration.GetConnectionString("Server=sistemawebicdc.database.windows.net;Database=bdsistemaweb;User Id=userweb;Password=Password123#;MultipleActiveResultSets=true;TrustServerCertificate=True");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<ILogsService, LogsService>();
